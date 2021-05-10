@@ -1461,7 +1461,7 @@ body.fixed {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("../../img/index/stats/star.svg");
+  background-image: url("../img/index/stats/star.svg");
 }
 
 .media {

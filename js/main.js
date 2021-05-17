@@ -17,8 +17,8 @@ testWebP(function (support) {
 
 $(document).ready(function () {
   // MAIN SLIDER
-  let introSlider = $('.intro__slider');
-  let introProgressLine = $('.intro__slider-line');
+  let introSlider = $(".intro__slider");
+  let introProgressLine = $(".intro__slider-line");
 
   // NAV SCROLL
   $("a[href^='#']").click(function () {
@@ -30,9 +30,10 @@ $(document).ready(function () {
   // SCROLL OF NEWS-HEADER
   if (!window.matchMedia("(max-width: 1030px)").matches) {
     $(window).on("scroll", () => {
-
       if ($(window).scrollTop() > 20) {
-        $(".news-header, .events-header, .header, .events-header__burger, .person-header").addClass("on-scroll");
+        $(
+          ".news-header, .events-header, .header, .events-header__burger, .person-header"
+        ).addClass("on-scroll");
       } else {
         $(
           ".news-header, .events-header, .header, .events-header__burger, .person-header"
@@ -40,24 +41,22 @@ $(document).ready(function () {
       }
 
       if ($(window).scrollTop() > 100) {
-        $('.scroll').addClass('unactive');
-      }
-      else {
+        $(".scroll").addClass("unactive");
+      } else {
         $(".scroll").removeClass("unactive");
       }
-
     });
 
     // FANCYBOX
     $("[data-fancybox]").fancybox({
-      touch: false
+      touch: false,
     });
   }
 
   // NEWS-HEADER
-  $('.burger').click(() => { 
+  $(".burger").click(() => {
     $(".burger, .nav").toggleClass("active");
-    $('body').toggleClass('fixed');
+    $("body").toggleClass("fixed");
   });
 
   // EVENTS TABS
@@ -81,10 +80,10 @@ $(document).ready(function () {
     $(".team__description").removeClass("active");
     $(".team__description").eq(currTab).addClass("active");
   });
-  
+
   //INTRO SLIDER
   introSlider.on("init reInit", () => {
-    let totalSlides = introSlider.find($('.intro__slider-slide')).length;
+    let totalSlides = introSlider.find($(".intro__slider-slide")).length;
     let total = `${parseInt(totalSlides / 10)}${totalSlides}`;
     $(".intro__slider-total, .intro__slider-end").text(total);
   });
@@ -103,9 +102,9 @@ $(document).ready(function () {
     }
   );
 
-  introSlider.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-    let calc = ( (nextSlide) / (slick.slideCount-1) ) * 100;
-    introProgressLine.css('width', calc + '%');
+  introSlider.on("beforeChange", (event, slick, currentSlide, nextSlide) => {
+    let calc = (nextSlide / (slick.slideCount - 1)) * 100;
+    introProgressLine.css("width", calc + "%");
   });
 
   // MEDIA SLIDER
@@ -148,15 +147,14 @@ $(document).ready(function () {
     ],
   });
 
-  mediaSlider.on(
-    "beforeChange",
-    (event, slick, currentSlide, nextSlide) => {
-      let numberActiveSlides = mediaSlider.find($(".media__slider-slide.slick-active")).length
-      let currentIndex = `${nextSlide + numberActiveSlides}`;
-      $(".media__slider-current").text(currentIndex);
-    }
-  );
-  
+  mediaSlider.on("beforeChange", (event, slick, currentSlide, nextSlide) => {
+    let numberActiveSlides = mediaSlider.find(
+      $(".media__slider-slide.slick-active")
+    ).length;
+    let currentIndex = `${nextSlide + numberActiveSlides}`;
+    $(".media__slider-current").text(currentIndex);
+  });
+
   mediaSlider.on("init afterChange", (event, slick, currentSlide) => {
     overlayedSlide = $(".media__slider-slide.slick-active")[
       $(".media__slider-slide.slick-active").length - 1
@@ -166,7 +164,7 @@ $(document).ready(function () {
     $(".media__slider-slide").not(".slick-active").addClass("overlay");
   });
 
-  // EVENTS SLIDER 
+  // EVENTS SLIDER
   let eventsSliedr = $(".events__slider");
 
   eventsSliedr.slick({
@@ -183,5 +181,4 @@ $(document).ready(function () {
       },
     ],
   });
-
 });
